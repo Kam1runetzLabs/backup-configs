@@ -1,0 +1,4 @@
+configuration {
+modi: "window,drun,ssh,combi";
+}
+@import "/usr/share/rofi/themes/solarized.rasi"

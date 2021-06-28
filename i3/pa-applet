@@ -1,0 +1,4 @@
+#!/bin/sh
+killall pa-applet
+sleep 1
+pa-applet

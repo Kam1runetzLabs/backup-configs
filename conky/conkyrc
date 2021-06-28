@@ -1,0 +1,138 @@
+conky.config = {
+-- Conky settings #
+	update_interval = 1,
+
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+
+	override_utf8_locale = true,
+
+	double_buffer = true,
+	no_buffers = true,
+
+	text_buffer_size = 2048,
+--imlib_cache_size 0
+
+	temperature_unit = 'fahrenheit',
+
+-- Window specifications #
+	own_window = true,
+    own_window_class = 'Conky',
+	own_window_type = 'override',
+	own_window_transparent = true,--000000
+	own_window_transparent = true,
+	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+--own_window_colour black
+
+	border_inner_margin = 0,
+	border_outer_margin = 5,
+
+	minimum_width = 250, minimum_height = 300,
+	maximum_width = 250,
+
+	alignment = 'top_right',
+	gap_x = 10,
+	gap_y = 25,
+
+-- Graphics settings #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+
+-- Text settings #
+	use_xft = true,
+	font = 'caviar dreams:size=10',
+	xftalpha = 0.5,
+
+	uppercase = false,
+
+	temperature_unit = 'celsius',
+
+	default_color = '#FFFFFF',
+
+
+
+--${texeci 1000 feh --bg-scale "/home/linux/Pictures/walterwhite.png"}
+
+
+
+-- Lua Load  #
+--	lua_load = '~/.conky/clock01_rings.lua',
+--	lua_draw_hook_pre = 'clock_rings',
+
+};
+
+conky.text = [[
+#----------------------------------------------------------------------------------------------------------------------------------------
+#					         Time and date 
+#----------------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------------
+#						Weather 
+#----------------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------------
+#					           CPU usage 
+#----------------------------------------------------------------------------------------------------------------------------------------
+${goto 9}${voffset 33}${cpu cpu0}% ${color FFFF00}${goto 9}${voffset 12}CPU0 $color
+${goto 70}${voffset -25}${cpu cpu1}% ${color FFFF00}${goto 70}${voffset 12}CPU1 $color
+${goto 130}${voffset -25}${cpu cpu2}% ${color FFFF00}${goto 130}${voffset 12}CPU2 $color
+${goto 190}${voffset -25}${cpu cpu3}% ${color FFFF00}${goto 190}${voffset 12}CPU3 $color
+#${goto 9}${voffset 30}${cpu cpu4}% ${color FFFF00}${goto 9}${voffset 12}CPU4 $color
+#${goto 70}${voffset -25}${cpu cpu5}% ${color FFFF00}${goto 70}${voffset 12}CPU5 $color
+#${goto 130}${voffset -25}${cpu cpu6}% ${color FFFF00}${goto 130}${voffset 12}CPU6 $color
+#${goto 190}${voffset -25}${cpu cpu7}% ${color FFFF00}${goto 190}${voffset 12}CPU7 $color
+${voffset 10}${color #FFFF00}Temp: $color ${acpitemp}°C  ${goto 150}${color #FFFF00}Freq:$color ${freq}MHz
+${color #FFFF00}Processes:$color $processes ${goto 150}${color #FFFF00}Running proc: $color  $running_processes 
+${color #FFFF00}Load:$color ${loadavg}
+#----------------------------------------------------------------------------------------------------------------------------------------
+#						Network
+#----------------------------------------------------------------------------------------------------------------------------------------
+${color FFFF00}${voffset 2}${hr 1}
+${color FFFF00}${voffset 5}Hostname: $color$alignr$nodename
+${color FFFF00}wlp3s0: $color$alignr${addr wlp3s0}
+${color FFFF00}Current: $color${alignr}${execi 10 /sbin/iwconfig wlp3s0|grep Rate|cut -d"M" -f1|cut -b20-24} Mbits/sec
+${color FFFF00}enp2s0f2: $color$alignr${addr enp2s0f2}
+
+${color #FFFF00}Down: $color${downspeed wlp3s0} k/s ${alignr}${color #FFFF00}Up:$color ${upspeed wlp3s0} k/s
+${downspeedgraph wlp3s0 30,120 000000 FFFF00} ${alignr}${upspeedgraph wlp3s0 30,120 000000 FFFF00}$color
+${color #FFFF00}Total:$color ${totaldown wlp3s0} ${alignr}${color #FFFF00}Total:$color ${totalup wlp3s0}
+#----------------------------------------------------------------------------------------------------------------------------------------
+#					DISK/RAM/SWAP usage
+#----------------------------------------------------------------------------------------------------------------------------------------
+${color FFFF00}${voffset 2}${hr 1}
+${color FFFFFF}${goto 7}${voffset 37}${fs_used_perc /}%
+${color FFFF00}${goto 7}DISK
+${color FFFFFF}${goto 102}${voffset -25}${memperc}%
+${color FFFF00}${goto 102}RAM
+${color FFFFFF}${goto 192}${voffset -26}${swapperc}%
+${color FFFF00}${goto 191}SWAP
+#----------------------------------------------------------------------------------------------------------------------------------------
+#					   Running processes
+#----------------------------------------------------------------------------------------------------------------------------------------
+${color FFFF00}${voffset 2} ${hr 1}
+${color #FFFF00}${voffset 5}NAME${goto 122}PID${goto 163}CPU%${goto 210}MEM%$color${voffset 5}
+${top name 1}${goto 115}${top pid 1}${goto 160}${top cpu 1}${goto 205}${top mem 1}
+${top name 2}${goto 115}${top pid 2}${goto 160}${top cpu 2}${goto 205}${top mem 2}
+${top name 3}${goto 115}${top pid 3}${goto 160}${top cpu 3}${goto 205}${top mem 3}
+${top name 4}${goto 115}${top pid 4}${goto 160}${top cpu 4}${goto 205}${top mem 4}
+${top name 5}${goto 115}${top pid 5}${goto 160}${top cpu 5}${goto 205}${top mem 5}
+${top name 6}${goto 115}${top pid 6}${goto 160}${top cpu 6}${goto 205}${top mem 6}
+${top name 7}${goto 115}${top pid 7}${goto 160}${top cpu 7}${goto 205}${top mem 7}
+${top name 8}${goto 115}${top pid 8}${goto 160}${top cpu 8}${goto 205}${top mem 8}
+${top name 9}${goto 115}${top pid 8}${goto 160}${top cpu 8}${goto 205}${top mem 9}
+${top name 10}${goto 115}${top pid 8}${goto 160}${top cpu 8}${goto 205}${top mem 10}
+#----------------------------------------------------------------------------------------------------------------------------------------
+#					     Computer info
+#----------------------------------------------------------------------------------------------------------------------------------------
+${color FFFF00}${voffset 2}${hr 1}${voffset 5}
+${color FFFF00}Hostname:$color${alignr}${nodename}
+${color FFFF00}OS:$color${alignr}Arch Linux $machine
+${color FFFF00}Kernel:$color${alignr}${kernel}$color
+#----------------------------------------------------------------------------------------------------------------------------------------
+#						Logging
+#----------------------------------------------------------------------------------------------------------------------------------------
+#${color FFFF00}${voffset 2}${hr 1}$color
+#${color FFFF00}${alignc}SYSLOG:$color
+#${color FFFF00}${voffset -5}${hr 1}$color
+#${voffset 5}${execi 10 tail -n8 /var/log/syslog | awk '{print " ",$5,$6,$7,$8,$9,$10}' | fold -w60}
+#]];

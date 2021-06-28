@@ -1,0 +1,9 @@
+(define (sum term a next b)
+ (if (> a b)
+  0
+ (+ (term a) (sum term (next a) next b))))
+
+(define (integral func a b dx)
+ (define (add-dx x) (+ x dx))
+ (* (sum func (+ a (/ dx 2)) add-dx b) dx))
+
