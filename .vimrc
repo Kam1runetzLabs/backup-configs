@@ -115,5 +115,5 @@ map <Leader>j <Plug>(easymotion-j)
 map / <Plug>(easymotion-sn)
 omap / <Plug>(easymotion-tn)
 
-map n <Plug>(easymotion-next)
-omap N <Plug>(easymotion-prev)
+" map n <Plug>(easymotion-next)
+" omap N <Plug>(easymotion-prev)
